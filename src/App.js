@@ -9,10 +9,13 @@ const API_KEY = "13c1b1460acd7a85bb409376dfb350fd";
 class App extends React.Component {
   state = {
     temperature: undefined,
+    temp_min: undefined,
+    temp_max: undefined,
     city: undefined,
     country: undefined,
     humidity: undefined,
     description: undefined,
+    icon: undefined,
     error: undefined
   }
   getWeather = async (e) => {
@@ -24,19 +27,25 @@ class App extends React.Component {
     if (city && country) {
       this.setState({
         temperature: data.main.temp,
+        temp_min: data.main.temp_min,
+        temp_max: data.main.temp_max,
         city: data.name,
         country: data.sys.country,
         humidity: data.main.humidity,
         description: data.weather[0].description,
+        clouds: data.clouds.all,
         error: ""
       });
     } else {
       this.setState({
         temperature: undefined,
+        temp_min: undefined,
+        temp_max: undefined,
         city: undefined,
         country: undefined,
         humidity: undefined,
         description: undefined,
+        clouds: undefined,
         error: "Παρακαλώ συμπληρώστε όλα τα πεδία ."
       });
     }
@@ -55,10 +64,13 @@ class App extends React.Component {
                   <Form getWeather={this.getWeather} />
                   <Weather 
                     temperature={this.state.temperature} 
+                    temp_min={this.state.temp_min}
+                    temp_max={this.state.temp_max}
                     humidity={this.state.humidity}
                     city={this.state.city}
                     country={this.state.country}
                     description={this.state.description}
+                    clouds={this.state.clouds}
                     error={this.state.error}
                   />
                 </div>

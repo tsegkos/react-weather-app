@@ -2,6 +2,7 @@
   "name": "weather-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://weather.iddesigns.eu/",
   "dependencies": {
     "bootstrap": "^3.3.7",
     "react": "^16.8.4",
